@@ -1,6 +1,7 @@
 /* eslint-disable multiline-ternary */
 import React, { useEffect, useCallback } from 'react'
 import { Form } from '@unform/web'
+import { toast } from 'react-toastify'
 import ReactLoading from 'react-loading'
 
 import { useModal } from '../context/modal'
@@ -14,14 +15,6 @@ import Card from '../components/card.component'
 
 import colors from '../styles/colors'
 import { Container, SectionTools } from '../styles/home-page.style'
-
-interface Tool {
-  id: string
-  title: string
-  description: string
-  link: string
-  tags: string[]
-}
 
 interface AddToolFormData {
   title: string
@@ -45,8 +38,16 @@ const Dashboard: React.FC = () => {
   }, [loadTools])
 
   async function handleSubmit(data: AddToolFormData) {
-    await handleAddToolSubmit(data)
-    isOpenAdd()
+    try {
+      await handleAddToolSubmit(data)
+      isOpenAdd()
+      toast.success('Ferramenta criada com sucesso!')
+    } catch (error) {
+      toast.error(
+        'Erro ao adicionar nova ferramenta, verifique se ela já existe'
+      )
+      console.log(error)
+    }
   }
 
   const CallRemoveTool = useCallback(
@@ -91,7 +92,7 @@ const Dashboard: React.FC = () => {
 
           <p>
             Tags
-            <span>*separate with spaces</span>
+            <span>(separate with spaces)</span>
           </p>
           <Input name="tags" sizeType="form" required />
 

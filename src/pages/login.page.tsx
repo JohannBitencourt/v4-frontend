@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Form } from '@unform/web'
+import { toast } from 'react-toastify'
 import { Link } from 'react-router-dom'
 import { FiLogIn } from 'react-icons/fi'
 import { useAuth } from '../context/auth'
@@ -13,9 +14,10 @@ const Login: React.FC = () => {
   async function handleLogin() {
     try {
       await login({ email: email, password: password })
+      toast.success('Logado com sucesso!')
     } catch (error) {
       console.log(error)
-      alert(error)
+      toast.error('Erro ao efetuar login')
     }
   }
 

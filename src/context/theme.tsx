@@ -3,16 +3,12 @@ import React, {
   useEffect,
   useContext,
   createContext,
-  Dispatch,
-  SetStateAction,
   useCallback
 } from 'react'
 import { DefaultTheme } from 'styled-components'
 
 import light from '../styles/themes/light'
 import dark from '../styles/themes/dark'
-
-type Response<T> = [T, Dispatch<SetStateAction<T>>]
 
 interface ThemeContextData {
   toggleTheme(): void

@@ -23,7 +23,6 @@ const Header: React.FC = () => {
   const [onlyTag, setOnlyTag] = useState(false)
 
   async function handleSubmit(data: SearchData) {
-    console.log('antes ', onlyTag)
     if (onlyTag) {
       await handleSearchSubmitByTag(data)
     } else {

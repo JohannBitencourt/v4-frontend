@@ -22,10 +22,6 @@ interface Tool {
   tags: string[]
 }
 
-interface RemoveToolFormData {
-  search: string
-}
-
 interface SearchTool {
   search: string
 }
